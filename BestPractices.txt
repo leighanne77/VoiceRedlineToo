@@ -1,0 +1,117 @@
+Security
+Your extension should be safe for your users. For example, send user data securely via HTTPS or web services security. Check that your extension does not pose security threats and does not use deceptive installation tactics. See Stay secure for a more information.
+
+Voice Recognition Security
+- Only activate voice recognition when explicitly requested by the user
+- Clearly indicate when voice recording is active
+- Immediately stop recording when requested or when tab loses focus
+- Do not store voice recordings, only process transcribed text
+- Use secure WebSocket connections for real-time voice data transmission
+
+Privacy
+An extension is required to disclose in the Privacy tab what user data it will collect and how it will handle user data. This information must be accurate, up-to-date, and match the extension's privacy policy. For more guidance on privacy, see Protecting User Privacy policies and the User Data FAQs.
+
+Document Privacy
+- Never transmit full document content, only work with selected paragraphs
+- Clear cached content when the user closes the document
+- Implement proper access controls for collaborative features
+- Maintain an audit log of all document changes
+
+Performance and functionality
+Performance Tooling
+Add end-to-end tests using testing libraries like Puppeteer to make sure your extension is performing as intended from start to finish. In addition, consider conducting thorough manual testing across different browser versions, OSs, and network conditions to ensure smooth functionality.
+
+Real-time Performance
+- Implement debouncing for voice recognition updates
+- Use WebSocket heartbeat to maintain connection health
+- Cache frequently used document elements
+- Batch multiple rapid changes together
+- Implement progressive loading for large documents
+
+Avoiding performance pitfalls
+When you are releasing your extension, there are a number of common performance issues you should make sure to avoid.
+
+Back/Forward cache invalidation
+The back/forward cache is an optimization built into Chrome that allows for instant loading of a page when a user returns to it. Given extensions can run on every page, its essential you make sure avoid code that prevents that caching, or else you risk substantially slowing down your users. Make sure you test if your extension invalidates the cache. Common causes of cache invalidation include
+
+Unload Handler The unload handler has been deprecated for a long time and should generally never be used. If you are using it, pagehide event is the most popular alternative. If you need to run code after the page closes, there is chrome.tabs.onRemoved.
+
+WebSockets in content scripts If you have a content script with a WebSocket or WebRTC connection, then the page cannot be cached. You can instead move these connections to your background service worker script. We have a guide on how to keep your connection in a background script, and then proxy the results to your content script with runtime.connect.
+
+Document Manipulation Best Practices
+- Use MutationObserver for tracking document changes
+- Maintain original document structure when applying changes
+- Implement undo/redo functionality for all changes
+- Handle concurrent edits gracefully
+- Preserve document formatting during markup
+
+User experience
+Design your extension with the user in mind by providing a simple, intuitive, and seamless user interface while also respecting user privacy.
+
+Voice Command UX
+- Provide visual feedback for voice recognition status
+- Show confidence level for recognized commands
+- Allow manual correction of misrecognized commands
+- Support multilingual voice commands
+- Maintain a command history for user reference
+
+Voice Command UX Best Practices
+Command Design:
+- Keep commands short and memorable (2-3 words maximum)
+- Use natural language patterns that users would intuitively speak
+- Avoid similar-sounding commands to prevent confusion
+- Support multiple variations of the same command
+- Group related commands logically
+
+Feedback and Confirmation:
+- Provide immediate visual feedback when a command is recognized
+- Show transcription in real-time to help users understand recognition accuracy
+- Use distinct visual indicators for different command states (listening, processing, executed)
+- Implement a clear confirmation system for destructive actions
+- Display command suggestions based on context
+
+Error Recovery:
+- Offer alternative command suggestions when recognition fails
+- Provide clear instructions for correction when commands are misunderstood
+- Allow users to cancel or undo voice commands easily
+- Support fallback to manual input when voice recognition fails
+- Maintain a visible list of available commands for reference
+
+Accessibility:
+- Support multiple languages and accents
+- Provide alternative input methods for all voice commands
+- Consider users with speech impediments or disabilities
+- Implement keyboard shortcuts as alternatives
+- Allow customization of command phrases
+
+Performance:
+- Minimize latency between speech and action
+- Implement command throttling to prevent rapid-fire execution
+- Cache frequently used commands for faster recognition
+- Optimize for different network conditions
+- Handle background noise gracefully
+
+Context Awareness:
+- Adapt available commands based on document context
+- Show relevant command suggestions based on user activity
+- Maintain command history for each document separately
+- Support context-specific command variations
+- Provide intelligent command completion
+
+Onboarding experience
+Start onboarding your users as soon as they reach your store listing by providing screenshots and a video of how the extension works. We recommend following the permission warning guidelines to increase the chances of users installing your extension.
+
+Error Handling
+- Gracefully handle network disconnections
+- Provide clear error messages for voice recognition issues
+- Implement automatic retry for failed operations
+- Save work in progress during errors
+- Log errors for debugging without exposing sensitive information
+
+Designing a persistent UI
+Avoid distracting users when implementing a persistent UI. For example, when designing a side panel for your extension, make sure it enhances the user's browsing experience by providing relevant information and useful functionality. A side panel should help users accomplish tasks with as little distraction as possible.
+
+Sign in with Google
+If your extension requires user login, we recommend that you support Sign in with Google, which provides a good user experience for Chrome Web Store users as they are likely to be logged in already. If you already have a login system, consider correlating the Google Account ID to the user account in your system. You can use the Chrome Identity API to support Google accounts in the following ways:
+
+OAuth2: See Authenticate users with Google.

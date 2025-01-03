@@ -1,0 +1,48 @@
+{
+  "scripts": {
+    "package": "node scripts/package.js",
+    "test": "node src/tests/run-tests.js",
+    "test:watch": "NODE_ENV=test node src/tests/run-tests.js --watch",
+    "test:coverage": "NODE_ENV=test node src/tests/run-tests.js --coverage",
+    "test:voice": "node src/tests/run-tests.js voice-recognition.test.js",
+    "test:websocket": "node src/tests/run-tests.js websocket.test.js",
+    "test:ui": "node src/tests/run-tests.js preview-panel.test.js",
+    "test:requirements": "node src/tests/run-tests.js requirements.test.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "adm-zip": "^0.5.10",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "lru-cache": "^10.1.0"
+  },
+  "overrides": {
+    "inflight": "npm:@isaacs/inflight@^1.0.0",
+    "glob": "^9.3.5"
+  },
+  "jest": {
+    "moduleDirectories": ["node_modules", "src"],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "testEnvironment": "jsdom",
+    "setupFiles": ["<rootDir>/src/tests/setup.js"],
+    "testEnvironmentOptions": {
+      "url": "http://localhost",
+      "pretendToBeVisual": true
+    },
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/tests/**"
+    ]
+  }
+}

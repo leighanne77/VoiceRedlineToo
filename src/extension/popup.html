@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VoiceRedline</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="status-bar">
+      <span id="connection-status">⚪ Disconnected</span>
+      <span id="doc-status">No document detected</span>
+    </div>
+    
+    <div class="controls">
+      <button id="startBtn" class="primary">Start Redlining</button>
+      <button id="stopBtn" disabled>Stop Redlining</button>
+      <button id="suggestBtn" disabled>Make New Suggestions</button>
+      <button id="acceptBtn" disabled>Accept Suggestion</button>
+      <button id="clearBtn" disabled>Clear</button>
+      <button id="acceptAllBtn" disabled>Accept All</button>
+    </div>
+
+    <div class="preview-panel">
+      <h3>Suggestions Preview</h3>
+      <div id="suggestions-container"></div>
+    </div>
+
+    <div class="voice-status">
+      <div id="voice-indicator">🎤</div>
+      <span id="voice-text">Voice recognition ready</span>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 

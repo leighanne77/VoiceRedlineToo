@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "VoiceRedline",
+  "version": "1.0.0",
+  "description": "Real-time collaborative document markup tool using voice commands",
+  "permissions": [
+    "identity",
+    "tabs",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://docs.google.com/*"
+  ],
+  "oauth2": {
+    "client_id": "${GOOGLE_CLIENT_ID}.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/docs",
+      "https://www.googleapis.com/auth/drive.file"
+    ]
+  },
+  "background": {
+    "service_worker": "src/extension/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://docs.google.com/document/*"],
+      "js": ["src/extension/content.js"],
+      "css": ["src/styles/content.css"]
+    }
+  ],
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "action": {
+    "default_popup": "src/popup/index.html",
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    }
+  }
+} 

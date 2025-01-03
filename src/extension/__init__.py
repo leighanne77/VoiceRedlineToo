@@ -1,0 +1,3 @@
+"""
+Chrome extension components.
+"""

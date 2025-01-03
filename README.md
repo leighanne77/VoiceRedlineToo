@@ -40,9 +40,9 @@ For this version of the application, you will need to run the voice processing s
 
    ```bash
    cp .env.example .env && echo "GROQ_API_KEY=your_api_key_here" > .env
-# OR
+OR
    vim .env
-# OR on Windows:
+OR on Windows:
    notepad .env
  ```
 

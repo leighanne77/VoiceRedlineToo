@@ -233,36 +233,4 @@ make test-integration # Integration tests only
 make coverage         # Generate coverage report
 ```# VoiceRedlineToo
 
-## Project Structure
-```
-VoiceRedline/
-├── src/
-│   ├── extension/          # Chrome extension code
-│   │   ├── content.js      # Content script
-│   │   ├── background.js   # Background script
-│   │   └── voice-recognition.js
-│   ├── tests/             # Test files
-│   │   ├── setup.js       # Test environment setup
-│   │   ├── run-tests.js   # Test runner
-│   │   └── *.test.js      # Test suites
-│   └── config/            # Configuration files
-│       └── config.js      # Environment config
-│
-├── scripts/               # Build scripts
-│   └── package.js         # Extension packaging
-│
-├── .env                   # Environment variables
-├── .env.test             # Test environment variables
-├── .env.example          # Example environment setup
-├── package.json          # Node.js dependencies
-├── requirements.txt      # Python dependencies
-└── setup.cfg             # Python tool configuration
-```
 
-## Key Components
-- **Extension**: Chrome extension for voice commands and document markup
-- **WebSocket Server**: Python backend for real-time communication
-- **Tests**: Jest-based test suite for frontend components
-
-## Setup
-```
